@@ -8,6 +8,7 @@ import { RolesModule } from './modules/roles/roles.module';
 import { RoutesModule } from './modules/routes/routes.module';
 import { PermissionsModule } from './modules/permissions/permissions.module';
 import sequelizeConfig from './db/ormconfig';
+import { JwtStrategy } from './modules/auth/jwt.strategy';
 
 @Module({
   imports: [ 
@@ -19,6 +20,6 @@ import sequelizeConfig from './db/ormconfig';
     PermissionsModule
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, JwtStrategy],
 })
 export class AppModule {}

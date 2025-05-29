@@ -1,31 +1,30 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 import { UsersService } from './users.service';
-import { User } from './users.model';
+import { ReadUserDto } from 'src/dto/users/read-user.dto';
+import { CreateUserDto } from 'src/dto/users/create-user.dto';
 
-@Controller('user')
+@Controller('users')
 export class UsersController {
   constructor(private readonly userService: UsersService) {}
 
   @Get()
-  async findAll(): Promise<User[]> {
+  async findAll(): Promise<ReadUserDto[]> {
     return this.userService.findAll();
   }
 
   @Get(':id')
-  async findOne(@Param('id') id: number): Promise<User> {
+  async findOne(@Param('id') id: number): Promise<ReadUserDto> {
     return this.userService.findOne(id);
   }
 
   @Post()
-  async create(
-    @Body() user: { name: string; email: string; password?: string; role?: string }
-  ): Promise<User> {
-    return this.userService.create(user);
+  async create(@Body() createUserDto: CreateUserDto): Promise<ReadUserDto> {
+    return this.userService.create(createUserDto);
   }
 
   @Put(':id')
-  async update(@Param('id') id: number, @Body() user: Partial<User>): Promise<[number]> {
-    return this.userService.update(id, user);
+  async update(@Param('id') id: number, @Body() createUserDto: CreateUserDto): Promise<number> {
+    return this.userService.update(id, createUserDto);
   }
 
   @Delete(':id')
