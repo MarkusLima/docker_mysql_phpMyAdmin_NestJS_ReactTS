@@ -3,17 +3,23 @@ import { RoutesService } from './routes.service';
 import { ApiTags, ApiOperation } from '@nestjs/swagger';
 import { Route } from './routes.model';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
+import { CheckPermissions } from 'src/utils/check-permissions';
 
 @ApiTags('Routes')
 @Controller('routes')
 export class RoutesController {
-  constructor(private readonly routesSyncService: RoutesService) {}
+
+  private checkPermissions = new CheckPermissions();
+
+  constructor(
+    private readonly routesSyncService: RoutesService,
+  ) {}
   
   @Get()
   @UseGuards(JwtAuthGuard)
   @ApiOperation({ summary: 'Lista todas as rotas registradas na aplicação' })
   async listRoutes(@Request() req): Promise<Route[]> {
-    console.log('User:', req.user);
+    await this.checkPermissions.checkUserPermissionsAndRegisterAcess( req.user, req.route.path, req.method.toUpperCase());
     return this.routesSyncService.findAll();
   }
 }

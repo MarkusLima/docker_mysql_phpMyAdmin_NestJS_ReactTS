@@ -30,4 +30,8 @@ export class User extends Model<User> {
     @Default(DataType.NOW)
     @Column
     declare updatedAt: Date;
+
+    @Default(DataType.NOW)
+    @Column
+    declare lastAccessAt: Date;
 }
