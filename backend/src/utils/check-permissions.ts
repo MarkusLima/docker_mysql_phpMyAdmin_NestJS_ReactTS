@@ -33,5 +33,6 @@ export class CheckPermissions {
 
         const hasPermission = await this.permissionModel.findOne({ where: { roleId: roleExists.id, routeId: existRoute.id } });
         if (!hasPermission) throw new ForbiddenException('Permissão negada para acessar esta rota.');
+        
     }
 }
