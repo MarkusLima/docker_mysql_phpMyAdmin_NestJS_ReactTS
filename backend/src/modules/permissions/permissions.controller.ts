@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Param, Delete, Patch, UseGuards, Request } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Delete, UseGuards, Request, Put } from '@nestjs/common';
 import { PermissionsService } from './permissions.service';
 import { CreatePermissionDto } from 'src/dto/permissions/create-route.dto';
 import { UpdatePermissionDto } from 'src/dto/permissions/update-route.dto';
@@ -38,7 +38,7 @@ export class PermissionsController {
         return this.permissionsService.findOne(+id);
     }
 
-    @Patch(':id')
+    @Put(':id')
     @UseGuards(JwtAuthGuard)
     @ApiOperation({ summary: 'Cria um usuários dentro do sistema' })
     async update(@Request() req, @Param('id') id: string, @Body() updatePermissionDto: UpdatePermissionDto) {

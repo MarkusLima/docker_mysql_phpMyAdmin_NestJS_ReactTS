@@ -17,7 +17,8 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/jest/bin/jest --runInBand",
     "test:e2e": "jest --config jest.config.ts",
-    "test:cobertura": "jest ./test/coberturas --config jest.config.ts"
+    "test:cobertura": "jest ./test/coberturas --config jest.config.ts",
+    "test:all": "jest ./test --config jest.config.ts -- --runInBand"
   },
   "engines": {
     "npm": ">=10.0.0",

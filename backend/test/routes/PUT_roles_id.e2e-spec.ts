@@ -11,8 +11,8 @@ import { Role } from 'src/modules/roles/roles.model';
 let app: INestApplication<App>;
 
 let body = {
-    password: 'test_get_role_id',
-    email: 'test_get_role_id@test.com'
+    password: 'test_put_role_id',
+    email: 'test_put_role_id@test.com'
 }; 
 
 let user: User;
@@ -30,12 +30,12 @@ beforeAll(async () => {
     user = await User.create({
         email: body.email,
         password: await bcrypt.hash(body.password, 10),
-        name: 'Test GET Role by ID',
+        name: 'Test PATCH Role by ID',
         roleId: 2
     });
 
     role = await Role.create({
-        name: 'Test GET Role by ID'
+        name: 'Test PATCH Role by ID'
     });
 
     jwtService = moduleFixture.get(JwtService);
@@ -49,10 +49,10 @@ afterAll(async () => {
     await app.close();
 });
 
-describe('Rota GET "/roles/:id', () => {
+describe('Rota PUT "/roles/:id', () => {
 
     it('Tenta recuperar o role sem permissão.', async () => {
-        await checarTokenAuth(app, '/roles/'+role.id, 'get', access_token);
+        await checarTokenAuth(app, '/roles/'+role.id, 'put', access_token, { name: 'Name Teste' });
     });
 
     it('Tenta recuperar o role com as permissões corretas.', async () => {
@@ -60,7 +60,7 @@ describe('Rota GET "/roles/:id', () => {
         await user.save();
 
         access_token = jwtService.sign({ sub: user.id, email: user.toJSON().email, roleId: 1 });
-        const response = await sendRequest(app, 'get', '/roles/'+role.id, {}, access_token);
+        const response = await sendRequest(app, 'put', '/roles/'+role.id, {name: 'Name Teste'}, access_token);
         expect(response.status).toBe(200);
     });
 

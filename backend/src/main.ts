@@ -3,10 +3,17 @@ import { AppModule } from './app.module';
 import { setupSwagger } from './swagger/swagger';
 import { RoutesService } from './modules/routes/routes.service';
 import { seedInitialData } from './seeders/initial-data';
+import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
   
   const app = await NestFactory.create(AppModule);
+
+  app.useGlobalPipes(new ValidationPipe({
+    whitelist: true,
+    forbidNonWhitelisted: true,
+    transform: true,
+  }));
   
   setupSwagger(app);
 

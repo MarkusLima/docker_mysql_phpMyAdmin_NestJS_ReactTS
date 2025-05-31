@@ -6,17 +6,15 @@ import { sendRequest, checarTokenAuth } from '../helpers/run-test';
 import { User } from 'src/modules/users/users.model';
 import * as bcrypt from 'bcryptjs';
 import { JwtService } from '@nestjs/jwt';
-import { Role } from 'src/modules/roles/roles.model';
 
 let app: INestApplication<App>;
 
 let body = {
-    password: 'test_get_role_id',
-    email: 'test_get_role_id@test.com'
+    email: 'test_put_user@test.com',
+    password: 'test_put_user'
 }; 
 
 let user: User;
-let role: Role;
 let jwtService: JwtService;
 let access_token: string;
 
@@ -28,14 +26,10 @@ beforeAll(async () => {
 
     // Cria o usuário de teste
     user = await User.create({
-        email: body.email,
+        email: body.email+'.br',
         password: await bcrypt.hash(body.password, 10),
-        name: 'Test GET Role by ID',
+        name: 'Test PUT User',
         roleId: 2
-    });
-
-    role = await Role.create({
-        name: 'Test GET Role by ID'
     });
 
     jwtService = moduleFixture.get(JwtService);
@@ -45,22 +39,22 @@ beforeAll(async () => {
 
 afterAll(async () => {
     await User.destroy({where: { id: user.id }});
-    await Role.destroy({where: { id: role.id }});
     await app.close();
 });
 
-describe('Rota GET "/roles/:id', () => {
+describe('Rota PUT "/user', () => {
 
-    it('Tenta recuperar o role sem permissão.', async () => {
-        await checarTokenAuth(app, '/roles/'+role.id, 'get', access_token);
+
+    it('Tenta atualizar as informações do usuario sem permissão.', async () => {
+        await checarTokenAuth(app, '/user', 'put', access_token);
     });
 
-    it('Tenta recuperar o role com as permissões corretas.', async () => {
+    it('Tenta atualizar as informações do usuario com as permissões corretas.', async () => {
         user.roleId = 1;
         await user.save();
 
         access_token = jwtService.sign({ sub: user.id, email: user.toJSON().email, roleId: 1 });
-        const response = await sendRequest(app, 'get', '/roles/'+role.id, {}, access_token);
+        const response = await sendRequest(app, 'put', '/user', body, access_token);
         expect(response.status).toBe(200);
     });
 

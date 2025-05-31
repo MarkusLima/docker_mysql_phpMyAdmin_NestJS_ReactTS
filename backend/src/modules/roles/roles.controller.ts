@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Param, Delete, Patch, UseGuards, Request } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Delete, UseGuards, Request, Put } from '@nestjs/common';
 import { RolesService } from './roles.service';
 import { CreateRoleDto } from 'src/dto/roles/create-role.dto';
 import { UpdateRoleDto } from 'src/dto/roles/update-role.dto';
@@ -38,10 +38,11 @@ export class RolesController {
     return this.rolesService.findOne(+id);
   }
 
-  @Patch(':id')
+  @Put(':id')
   @UseGuards(JwtAuthGuard)
   @ApiOperation({ summary: 'Atualiza o role/papeis dentro do sistema de acordo com o Id' })
   async update(@Request() req, @Param('id') id: string, @Body() updateRoleDto: UpdateRoleDto) {
+    console.log('updateRoleDto', updateRoleDto);
     await this.checkPermissions.checkUserPermissionsAndRegisterAcess( req.user, req.route.path, req.method.toUpperCase());
     return this.rolesService.update(+id, updateRoleDto);
   }

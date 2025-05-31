@@ -4,7 +4,7 @@ import request from 'supertest';
 import { App } from 'supertest/types';
 import { AppModule } from '../../src/app.module';
 
-describe('Rota Inicial "/"', () => {
+describe('Rota GET Inicial "/"', () => {
   let app: INestApplication<App>;
 
   beforeAll(async () => {

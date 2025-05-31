@@ -54,20 +54,4 @@ export class UsersController {
     return this.userService.remove(id);
   }
 
-  @Get('me')
-  @UseGuards(JwtAuthGuard)
-  @ApiOperation({ summary: 'Retorna somente o próprio usuários logado dentro do sistema' })
-  async findMe(@Request() req): Promise<ReadUserDto> {
-    await this.checkPermissions.checkUserPermissionsAndRegisterAcess( req.user, req.route.path, req.method.toUpperCase());
-    return this.userService.findOne(req.user.id);
-  }
-
-  @Put('me')
-  @UseGuards(JwtAuthGuard)
-  @ApiOperation({ summary: 'Atualiza o proprio usuário dentro do sistema' })
-  async updateMe(@Request() req, @Body() createUserDto: CreateUserDto): Promise<number> {
-    await this.checkPermissions.checkUserPermissionsAndRegisterAcess( req.user, req.route.path, req.method.toUpperCase());
-    return this.userService.update(req.user.id, createUserDto);
-  }
-
 }
