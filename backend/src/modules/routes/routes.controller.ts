@@ -1,11 +1,12 @@
 import { Controller, Get, UseGuards, Request } from '@nestjs/common';
 import { RoutesService } from './routes.service';
-import { ApiTags, ApiOperation } from '@nestjs/swagger';
+import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
 import { Route } from './routes.model';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { CheckPermissions } from 'src/utils/check-permissions';
 
 @ApiTags('Routes')
+@ApiBearerAuth('access-token')
 @Controller('routes')
 export class RoutesController {
 

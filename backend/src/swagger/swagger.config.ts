@@ -2,7 +2,16 @@ import { DocumentBuilder } from '@nestjs/swagger';
 
 export const swaggerConfig = new DocumentBuilder()
   .setTitle('API Example')
-  .setDescription('API de exemplo com NestJS, Sequelize e Swagger')
+  .setDescription('The API description')
   .setVersion('1.0')
-  .addBearerAuth() // Para JWT
+  .addBearerAuth(
+    {
+      type: 'http',
+      scheme: 'bearer',
+      bearerFormat: 'JWT', // opcional
+      name: 'Authorization',
+      in: 'header',
+    },
+    'access-token', // <-- nome da security, importante!
+  )
   .build();

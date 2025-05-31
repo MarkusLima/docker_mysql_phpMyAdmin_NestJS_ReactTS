@@ -4,9 +4,10 @@ import { CreateRoleDto } from 'src/dto/roles/create-role.dto';
 import { UpdateRoleDto } from 'src/dto/roles/update-role.dto';
 import { CheckPermissions } from 'src/utils/check-permissions';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
-import { ApiTags, ApiOperation } from '@nestjs/swagger';
+import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
 
 @ApiTags('Roles')
+@ApiBearerAuth('access-token')
 @Controller('roles')
 export class RolesController {
 
