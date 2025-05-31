@@ -2,11 +2,12 @@ import { Controller, Get, Post, Body, Param, Delete, UseGuards, Request, Put } f
 import { PermissionsService } from './permissions.service';
 import { CreatePermissionDto } from 'src/dto/permissions/create-route.dto';
 import { UpdatePermissionDto } from 'src/dto/permissions/update-route.dto';
-import { ApiTags, ApiOperation } from '@nestjs/swagger';
+import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { CheckPermissions } from 'src/utils/check-permissions';
 
 @ApiTags('Permissions')
+@ApiBearerAuth('access-token')
 @Controller('permissions')
 export class PermissionsController {
 
