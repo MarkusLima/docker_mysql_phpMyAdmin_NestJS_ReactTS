@@ -1,7 +1,7 @@
 import axios from "axios";
 import type { InternalAxiosRequestConfig } from "axios";
 
-const URL_BACK_END = process.env.VITE_BACK_END_URL || "http://localhost:3000"; // Defina a URL padrão ou use uma variável de ambiente
+const URL_BACK_END = process.env.BACK_END_URL || "http://localhost:3000"; // Defina a URL padrão ou use uma variável de ambiente
 
 // Base da API
 const api = axios.create({
