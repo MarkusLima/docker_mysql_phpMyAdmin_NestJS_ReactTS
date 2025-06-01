@@ -201,10 +201,12 @@ Essas tecnologias garantem uma aplicação moderna, responsiva, testável e de f
 - Renomear /backend/.env.example para /backend/.env
 - Setar as variáveis com as credenciais do banco de dados.
 - Entrar no diretório /backend (cd /backend).
+- Executar no terminal **npm i**
 - Executar no terminal **npm run start**
 - Renomear /frontend/.env.example para /frontend/.env
 - Setar a variável BACK_END_URL para a url ao qual o banck end está rodando.
 - Entrar no diretório /frontend (cd /frontend).
+- Executar no terminal **npm i**
 - Executar no terminal **npm run start**
 
 
