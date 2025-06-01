@@ -68,7 +68,7 @@ O banco de dados é estruturado com as seguintes tabelas principais:
 No diretório raiz do projeto, execute:
 
 ```bash
-docker-compose up --build
+docker compose up --build
 ```
 
 ---
