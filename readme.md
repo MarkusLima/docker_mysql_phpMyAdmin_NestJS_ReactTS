@@ -171,6 +171,28 @@ Na interface do Swagger, você pode:
 > O Swagger facilita o desenvolvimento, integração e testes da sua aplicação!
 
 
+## Tecnologias Utilizadas - FrontEnd
+
+O frontend do projeto foi desenvolvido utilizando as seguintes tecnologias:
+
+- **React**: Biblioteca principal para construção da interface de usuário.
+- **TypeScript**: Superset do JavaScript que adiciona tipagem estática ao código, aumentando a robustez e a produtividade.
+- **React Router DOM**: Gerenciamento de rotas e navegação entre páginas da aplicação.
+- **Axios**: Cliente HTTP para comunicação com a API backend.
+- **Bootstrap** e **React-Bootstrap**: Frameworks para estilização e componentes visuais responsivos.
+- **React Scripts**: Scripts e configuração padrão para desenvolvimento, build e testes de aplicações React.
+- **Web Vitals**: Biblioteca para monitoramento de métricas de performance da aplicação.
+- **@types/\***: Tipagens TypeScript para bibliotecas de terceiros, garantindo melhor integração e autocompletar no editor.
+
+Essas tecnologias garantem uma aplicação moderna, responsiva, testável e de fácil manutenção.
+
+---
+
+🔗 **[http://localhost:3003](http://localhost:3003)**
+![WebApp](docs/login.jpg)
+![WebApp](docs/register.jpg)
+![WebApp](docs/panel.jpg)
+
 
 
 
