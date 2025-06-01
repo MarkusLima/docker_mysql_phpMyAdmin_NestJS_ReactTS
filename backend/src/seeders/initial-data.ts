@@ -4,7 +4,6 @@ import * as bcrypt from 'bcryptjs';
 import { Route } from 'src/modules/routes/routes.model';
 import { Permission } from 'src/modules/permissions/permissions.model';
 
-
 export async function seedInitialData() {
   try {
     // Cria roles

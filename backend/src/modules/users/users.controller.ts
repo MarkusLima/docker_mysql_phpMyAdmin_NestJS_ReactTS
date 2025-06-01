@@ -20,7 +20,7 @@ export class UsersController {
   @ApiOperation({ summary: 'Retorna todos os usuários dentro do sistema' })
   async findAll(@Request() req): Promise<ReadUserDto[]> {
     await this.checkPermissions.checkUserPermissionsAndRegisterAcess( req.user, req.route.path, req.method.toUpperCase());
-    return this.userService.findAll();
+    return this.userService.findAll(req);
   }
 
   @Get(':id')
@@ -43,6 +43,7 @@ export class UsersController {
   @UseGuards(JwtAuthGuard)
   @ApiOperation({ summary: 'Atualiza o usuário dentro do sistema de acordo com o Id' })
   async update(@Request() req, @Param('id') id: number, @Body() createUserDto: CreateUserDto): Promise<number> {
+    console.log('Updating user with ID:', id, 'and data:', createUserDto);
     await this.checkPermissions.checkUserPermissionsAndRegisterAcess( req.user, req.route.path, req.method.toUpperCase());
     return this.userService.update(id, createUserDto);
   }

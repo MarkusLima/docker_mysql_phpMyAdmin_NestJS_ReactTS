@@ -15,7 +15,6 @@ export class CreateUserDto {
 
     @ApiProperty({ example: 'fibonacci', description: 'Senha do usuário' })
     @IsNotEmpty({ message: 'A senha é obrigatória' })
-    @IsString({ message: 'O email deve ser uma string' })
     @MinLength(4, { message: 'A senha deve ter pelo menos 4 caracteres' })
     password: string;
 
