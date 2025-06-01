@@ -46,8 +46,8 @@ O banco de dados é estruturado com as seguintes tabelas principais:
 
 1. **Clone o repositório:**
    ```bash
-   git clone <url-do-repositorio>
-   cd manager_users
+   git clone https://github.com/MarkusLima/docker_mysql_phpMyAdmin_NestJS_ReactTS
+   cd docker_mysql_phpMyAdmin_NestJS_ReactTS
    ```
 
 ### Como instalar o Docker e rodar o projeto
