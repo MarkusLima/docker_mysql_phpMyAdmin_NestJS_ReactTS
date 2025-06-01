@@ -1,0 +1,22 @@
+/* src/App.css */
+
+.sidebar {
+  width: 300px;
+  min-height: 100vh;
+  position: fixed;
+  z-index: 1030;
+}
+
+.content {
+  margin-left: 0;
+}
+
+nav h3 {
+    margin-right: 170px;
+}
+
+@media (min-width: 768px) {
+  .content {
+    margin-left: 300px;
+  }
+}
